@@ -5,7 +5,6 @@ RUN echo 'APT::Install-Recommends "false";' | sudo tee /etc/apt/apt.conf.d/no-in
   sudo apt-get update && \
   sudo apt-get install -y protobuf-compiler mysql-client python-pip python-setuptools python-yaml python-dev && \
   sudo apt-get install -y apt-transport-https && \
-  sudo apt-get install -y jq && \
   sudo rm -rf /var/lib/apt/lists/*
 
 # Node.js
