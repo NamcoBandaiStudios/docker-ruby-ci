@@ -23,8 +23,8 @@ ENV CHROMEDRIVER_PATH /usr/local/bin/chromedriver
 RUN sudo apt-get update && \
   sudo apt-get install -y chromium libgconf-2-4 unzip && \
   sudo rm -rf /var/lib/apt/lists/*
-RUN curl -L -o /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/2.33/chromedriver_linux64.zip && \
-  cd /tmp && \
-  unzip chromedriver.zip && \
+RUN VERSION=$(curl -sL https://chromedriver.storage.googleapis.com/LATEST_RELEASE) && \
+  curl -L -o /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/${VERSION}/chromedriver_linux64.zip && \
+  unzip -d /tmp /tmp/chromedriver.zip && \
   sudo cp /tmp/chromedriver /usr/local/bin/chromedriver && \
   rm -f /tmp/chromedriver*
