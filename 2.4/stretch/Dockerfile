@@ -9,7 +9,7 @@ RUN echo 'APT::Install-Recommends "false";' | sudo tee /etc/apt/apt.conf.d/no-in
   sudo rm -rf /var/lib/apt/lists/*
 
 # Node.js
-RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash - && \
+RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - && \
   sudo apt-get install nodejs && \
   sudo npm install -g yarn && \
   sudo rm -rf /var/lib/apt/lists/* && \
