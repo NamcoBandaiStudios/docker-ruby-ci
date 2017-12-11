@@ -5,7 +5,7 @@ RUN echo 'APT::Install-Recommends "false";' | sudo tee /etc/apt/apt.conf.d/no-in
   sudo apt-get update && \
   sudo apt-get install -y \
     apt-transport-https \
-    protobuf-compiler mysql-client python-pip python-setuptools python-yaml python-dev && \
+    protobuf-compiler mysql-client python3-pip python3-setuptools python3-yaml python3-dev && \
   sudo rm -rf /var/lib/apt/lists/*
 
 # Node.js
@@ -16,7 +16,7 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - && \
   sudo rm -rf /tmp/npm-*
 
 # AWS CLI
-RUN sudo pip install awscli && \
+RUN sudo pip3 install awscli && \
   sudo rm -rf /tmp/pip*
 
 # ChromeDriver
