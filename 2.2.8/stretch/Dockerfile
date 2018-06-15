@@ -1,4 +1,4 @@
-FROM circleci/ruby:2-stretch
+FROM circleci/ruby:2.2.8
 
 # OS packages
 RUN echo 'APT::Install-Recommends "false";' | sudo tee /etc/apt/apt.conf.d/no-install-recommends >/dev/null && \
