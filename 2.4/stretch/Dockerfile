@@ -26,5 +26,6 @@ RUN sudo apt-get update && \
   sudo rm -rf /var/lib/apt/lists/*
 RUN curl -L -o /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/2.45/chromedriver_linux64.zip && \
   unzip -d /tmp /tmp/chromedriver.zip && \
+  sudo chmod 755 /tmp/chromedriver && \
   sudo cp /tmp/chromedriver /usr/local/bin/chromedriver && \
   rm -f /tmp/chromedriver*
