@@ -28,5 +28,6 @@ RUN CHROME_VERSION=$(dpkg -s chromium | perl -lne '/^Version: ([0-9]+\.[0-9]+\.[
   VERSION=$(curl -sL https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}) && \
   curl -L -o /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/${VERSION}/chromedriver_linux64.zip && \
   unzip -d /tmp /tmp/chromedriver.zip && \
+  sudo chmod 755 /tmp/chromedriver && \
   sudo cp /tmp/chromedriver /usr/local/bin/chromedriver && \
   rm -f /tmp/chromedriver*
