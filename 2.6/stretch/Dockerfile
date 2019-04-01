@@ -5,7 +5,7 @@ RUN echo 'APT::Install-Recommends "false";' | sudo tee /etc/apt/apt.conf.d/no-in
   sudo apt-get update && \
   sudo apt-get install -y \
     apt-transport-https \
-    protobuf-compiler mysql-client python3-pip python3-setuptools python3-yaml python3-wheel python3-dev && \
+    mysql-client python3-pip python3-setuptools python3-yaml python3-wheel python3-dev && \
   sudo rm -rf /var/lib/apt/lists/*
 
 # Node.js
@@ -18,6 +18,12 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - && \
 # AWS CLI
 RUN sudo pip3 install awscli && \
   sudo rm -rf /tmp/pip*
+
+# protobuf-compiler
+RUN curl -L -o /tmp/protobuf.tar.gz https://github.com/protocolbuffers/protobuf/releases/download/v3.7.1//protobuf-all-3.7.1.tar.gz && \
+    tar xzvf /tmp/protobuf.tar.gz -C /tmp && \
+    cd /tmp/protobuf-3.7.1 && \
+    ./configure --prefix=/usr && make && sudo make install && sudo rm -rf /tmp/protobuf*
 
 # ChromeDriver
 ENV CHROMEDRIVER_PATH /usr/local/bin/chromedriver
