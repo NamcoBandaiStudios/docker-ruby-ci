@@ -25,12 +25,16 @@ RUN curl -L -o /tmp/protobuf.tar.gz https://github.com/protocolbuffers/protobuf/
     cd /tmp/protobuf-3.9.0 && \
     ./configure --prefix=/usr && make && sudo make install && sudo rm -rf /tmp/protobuf*
 
+# Chrome
+RUN sudo apt-get update && \
+  curl -L -o /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+  sudo apt install /tmp/google-chrome-stable_current_amd64.deb
 # ChromeDriver
 ENV CHROMEDRIVER_PATH /usr/local/bin/chromedriver
 RUN sudo apt-get update && \
-  sudo apt-get install -y chromium libgconf-2-4 unzip && \
+  sudo apt-get install -y unzip && \
   sudo rm -rf /var/lib/apt/lists/*
-RUN CHROME_VERSION=$(dpkg -s chromium | perl -lne '/^Version: ([0-9]+\.[0-9]+\.[0-9]+)/ and print $1') && \
+RUN CHROME_VERSION=$(dpkg -s google-chrome-stable | perl -lne '/^Version: ([0-9]+\.[0-9]+\.[0-9]+)/ and print $1') && \
   VERSION=$(curl -sL https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}) && \
   curl -L -o /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/${VERSION}/chromedriver_linux64.zip && \
   unzip -d /tmp /tmp/chromedriver.zip && \
