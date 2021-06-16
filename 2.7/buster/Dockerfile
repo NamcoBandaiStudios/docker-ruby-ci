@@ -5,7 +5,7 @@ RUN echo 'APT::Install-Recommends "false";' | sudo tee /etc/apt/apt.conf.d/no-in
   sudo apt-get update && \
   sudo apt-get install -y \
     apt-transport-https \
-    default-mysql-client python3-pip python3-setuptools python3-yaml python3-wheel python3-dev && \
+    default-mysql-client python3-pip python3-setuptools python3-yaml python3-wheel python3-dev git && \
   sudo rm -rf /var/lib/apt/lists/*
 
 # Node.js
